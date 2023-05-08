@@ -248,6 +248,9 @@
     <Compile Include="Views\UnitConverter.xaml.cs">
       <DependentUpon>UnitConverter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WhizCalculator.xaml.cs">
+      <DependentUpon>WhizCalculator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowFrameService.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseReleaseAppxManifest)' == 'True'">
@@ -788,6 +791,10 @@
     <Page Include="Views\UnitConverter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\WhizCalculator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

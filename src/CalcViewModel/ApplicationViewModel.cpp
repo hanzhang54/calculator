@@ -147,6 +147,13 @@ void ApplicationViewModel::OnModeChanged()
             m_DateCalcViewModel = ref new DateCalculatorViewModel();
         }
     }
+    else if (NavCategory::IsWhizCalculatorViewMode(m_mode))
+    {
+        if (!m_WhizCalcViewModel)
+        {
+            m_WhizCalcViewModel = ref new WhizCalculatorViewModel();
+        }
+    }
     else if (NavCategory::IsConverterViewMode(m_mode))
     {
         if (!m_ConverterViewModel)

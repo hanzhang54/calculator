@@ -2888,6 +2888,9 @@
     <value>Calculation mode</value>
     <comment>Automation label for the Date calculation Mode combobox. Users will hear "Calculation mode combobox".</comment>
   </data>
+  <data name="WhizCalculationModeText" xml:space="preserve">
+    <value>Whiz</value>
+  </data>
   <data name="AddOption.Content" xml:space="preserve">
     <value>Add</value>
     <comment>Add toggle button text</comment>

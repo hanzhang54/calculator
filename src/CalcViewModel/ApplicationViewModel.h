@@ -5,6 +5,7 @@
 
 #include "StandardCalculatorViewModel.h"
 #include "DateCalculatorViewModel.h"
+#include "WhizCalculatorViewModel.h"
 #include "GraphingCalculator/GraphingCalculatorViewModel.h"
 #include "UnitConverterViewModel.h"
 
@@ -22,6 +23,7 @@ namespace CalculatorApp
             OBSERVABLE_OBJECT();
             OBSERVABLE_PROPERTY_RW(StandardCalculatorViewModel ^, CalculatorViewModel);
             OBSERVABLE_PROPERTY_RW(DateCalculatorViewModel ^, DateCalcViewModel);
+            OBSERVABLE_PROPERTY_RW(WhizCalculatorViewModel ^, WhizCalcViewModel);
             OBSERVABLE_PROPERTY_RW(GraphingCalculatorViewModel ^, GraphingCalcViewModel);
             OBSERVABLE_PROPERTY_RW(UnitConverterViewModel ^, ConverterViewModel);
             OBSERVABLE_PROPERTY_RW(CalculatorApp::ViewModel::Common::ViewMode, PreviousMode);

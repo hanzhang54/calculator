@@ -28,26 +28,26 @@
             <Setter Property="KeyTipPlacementMode" Value="Right"/>
         </Style>
         <DataTemplate x:Key="NavViewCategoryItemDataTemplate" x:DataType="vmcom:NavCategory">
-            <muxc:NavigationViewItem Content="{x:Bind Name}"
-                                     Tag="{x:Bind ViewMode}"
+            <muxc:NavigationViewItem Style="{StaticResource NavViewItemStyle}"
                                      AccessKey="{x:Bind AccessKey}"
-                                     IsEnabled="{x:Bind IsEnabled, Mode=OneWay}"
-                                     Style="{StaticResource NavViewItemStyle}"
+                                     AutomationProperties.AutomationId="{x:Bind AutomationId}"
                                      AutomationProperties.Name="{x:Bind AutomationName}"
-                                     AutomationProperties.AutomationId="{x:Bind AutomationId}">
+                                     Content="{x:Bind Name}"
+                                     Tag="{x:Bind ViewMode}"
+                                     IsEnabled="{x:Bind IsEnabled, Mode=OneWay}">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon FontFamily="{StaticResource CalculatorFontFamily}" Glyph="{x:Bind Glyph}"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
         </DataTemplate>
         <DataTemplate x:Key="NavViewCategoryGroupItemDataTemplate" x:DataType="vmcom:NavCategoryGroup">
-            <muxc:NavigationViewItemHeader Content="{x:Bind Name}"
+            <muxc:NavigationViewItemHeader AutomationProperties.HeadingLevel="Level1"
                                            AutomationProperties.Name="{x:Bind AutomationName}"
-                                           AutomationProperties.HeadingLevel="Level1"/>
+                                           Content="{x:Bind Name}"/>
         </DataTemplate>
         <selectors:NavViewMenuItemTemplateSelector x:Key="NavViewMenuItemTemplateSelector"
-                                                   CategoryItemTemplate="{StaticResource NavViewCategoryItemDataTemplate}"
-                                                   CategoryGroupItemTemplate="{StaticResource NavViewCategoryGroupItemDataTemplate}"/>
+                                                   CategoryGroupItemTemplate="{StaticResource NavViewCategoryGroupItemDataTemplate}"
+                                                   CategoryItemTemplate="{StaticResource NavViewCategoryItemDataTemplate}"/>
 
         <converters:BooleanToVisibilityNegationConverter x:Key="BooleanToVisibilityNegationConverter"/>
         <converters:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
@@ -119,11 +119,11 @@
                              IsSettingsVisible="True"
                              ItemInvoked="OnNavItemInvoked"
                              Loaded="OnNavLoaded"
-                             MenuItemsSource="{x:Bind NavViewCategoriesSource, Mode=OneWay}"
                              MenuItemTemplateSelector="{StaticResource NavViewMenuItemTemplateSelector}"
+                             MenuItemsSource="{x:Bind NavViewCategoriesSource, Mode=OneWay}"
                              OpenPaneLength="{x:Bind NavigationViewOpenPaneLength(Model.IsAlwaysOnTop), Mode=OneWay}"
-                             PaneDisplayMode="LeftMinimal"
                              PaneClosed="OnNavPaneClosed"
+                             PaneDisplayMode="LeftMinimal"
                              PaneOpened="OnNavPaneOpened"
                              SelectionChanged="OnNavSelectionChanged"
                              TabIndex="1"
@@ -136,6 +136,9 @@
                     </Border>
                     <Border x:Name="DateCalcHolder">
                         <!-- PLACEHOLDER!!!! This is where the date calculator goes when it is delay loaded -->
+                    </Border>
+                    <Border x:Name="WhizCalcHolder">
+                        <!-- PLACEHOLDER!!!! This is where the whiz calculator goes when it is delay loaded -->
                     </Border>
                     <Border x:Name="GraphingCalcHolder">
                         <!-- PLACEHOLDER!!!! This is where the graphing calculator goes when it is delay loaded -->

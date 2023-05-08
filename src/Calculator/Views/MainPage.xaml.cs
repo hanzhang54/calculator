@@ -3,7 +3,7 @@ using CalculatorApp.Converters;
 using CalculatorApp.ViewModel;
 using CalculatorApp.ViewModel.Common;
 using CalculatorApp.ViewModel.Common.Automation;
-
+using CalculatorApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -235,16 +235,22 @@ namespace CalculatorApp
                         EnsureGraphingCalculator();
                         KeyboardShortcutManager.DisableShortcuts(true);
                         break;
-                    default:
-                        if (NavCategory.IsDateCalculatorViewMode(newValue))
+                    case ViewMode.Date:
+                        if (Model.CalculatorViewModel != null)
                         {
-                            if (Model.CalculatorViewModel != null)
-                            {
-                                Model.CalculatorViewModel.HistoryVM.AreHistoryShortcutsEnabled = false;
-                            }
-                            EnsureDateCalculator();
+                            Model.CalculatorViewModel.HistoryVM.AreHistoryShortcutsEnabled = false;
                         }
-                        else if (NavCategory.IsConverterViewMode(newValue))
+                        EnsureDateCalculator();
+                        break;
+                    case ViewMode.Whiz:
+                        if (Model.CalculatorViewModel != null)
+                        {
+                            Model.CalculatorViewModel.HistoryVM.AreHistoryShortcutsEnabled = false;
+                        }
+                        EnsureWhizCalculator();
+                        break;
+                    default:
+                        if (NavCategory.IsConverterViewMode(newValue))
                         {
                             if (Model.CalculatorViewModel != null)
                             {
@@ -395,6 +401,7 @@ namespace CalculatorApp
         {
             var isCalcViewMode = NavCategory.IsCalculatorViewMode(mode);
             var isDateCalcViewMode = NavCategory.IsDateCalculatorViewMode(mode);
+            var isWhizCalcViewMode = NavCategory.IsWhizCalculatorViewMode(mode);
             var isGraphingCalcViewMode = NavCategory.IsGraphingCalculatorViewMode(mode);
             var isConverterViewMode = NavCategory.IsConverterViewMode(mode);
 
@@ -408,6 +415,12 @@ namespace CalculatorApp
             {
                 m_dateCalculator.Visibility = BooleanToVisibilityConverter.Convert(isDateCalcViewMode);
                 m_dateCalculator.IsEnabled = isDateCalcViewMode;
+            }
+
+            if (m_whizCalculator != null)
+            {
+                m_whizCalculator.Visibility = BooleanToVisibilityConverter.Convert(isWhizCalcViewMode);
+                m_whizCalculator.IsEnabled = isWhizCalcViewMode;
             }
 
             if (m_graphingCalculator != null)
@@ -452,7 +465,7 @@ namespace CalculatorApp
 
         private void OnPageLoaded(object sender, RoutedEventArgs args)
         {
-            if (m_converter == null && m_calculator == null && m_dateCalculator == null && m_graphingCalculator == null)
+            if (m_converter == null && m_calculator == null && m_dateCalculator == null && m_whizCalculator == null && m_graphingCalculator == null)
             {
                 // We have just launched into our default mode (standard calc) so ensure calc is loaded
                 EnsureCalculator();
@@ -555,6 +568,27 @@ namespace CalculatorApp
             }
         }
 
+        private void EnsureWhizCalculator()
+        {
+            if (m_whizCalculator == null)
+            {
+                // delay loading converter
+                m_whizCalculator = new WhizCalculator
+                {
+                    Name = "whizCalculator",
+                    DataContext = Model.WhizCalcViewModel
+                };
+
+                WhizCalcHolder.Child = m_whizCalculator;
+            }
+
+            if (m_calculator != null)
+            {
+                m_calculator.CloseHistoryFlyout();
+                m_calculator.CloseMemoryFlyout();
+            }
+        }
+
         private void EnsureGraphingCalculator()
         {
             if (m_graphingCalculator == null)
@@ -615,6 +649,7 @@ namespace CalculatorApp
         private GraphingCalculator m_graphingCalculator;
         private UnitConverter m_converter;
         private DateCalculator m_dateCalculator;
+        private WhizCalculator m_whizCalculator;
         private readonly AccessibilitySettings m_accessibilitySettings;
     }
 }
