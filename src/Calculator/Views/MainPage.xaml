@@ -145,6 +145,9 @@
                     <Border x:Name="ConverterHolder">
                         <!-- PLACEHOLDER!!!! This is where the converter goes when it is delay loaded -->
                     </Border>
+                    <Border x:Name="NoteCalcHolder">
+                        <!-- PLACEHOLDER!!!! This is where the note calculator goes when it is delay loaded -->
+                    </Border>
                 </Grid>
 
                 <Grid Height="{StaticResource HamburgerHeight}"

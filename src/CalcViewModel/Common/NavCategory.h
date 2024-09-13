@@ -45,7 +45,8 @@ namespace CalculatorApp::ViewModel
             Pressure = 14,
             Angle = 15,
             Currency = 16,
-            Graphing = 17
+            Graphing = 17,
+            Note = 18
         };
 
     public
@@ -108,6 +109,7 @@ namespace CalculatorApp::ViewModel
             static bool IsCalculatorViewMode(ViewModeType mode);
             static bool IsGraphingCalculatorViewMode(ViewModeType mode);
             static bool IsDateCalculatorViewMode(ViewModeType mode);
+            static bool IsNoteCalculatorViewMode(ViewModeType mode);
             static bool IsConverterViewMode(ViewModeType mode);
 
             internal : NavCategory(

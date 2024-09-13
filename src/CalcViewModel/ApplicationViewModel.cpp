@@ -586,6 +586,13 @@ void ApplicationViewModel::OnModeChanged()
             m_DateCalcViewModel = ref new DateCalculatorViewModel();
         }
     }
+    else if (NavCategory::IsNoteCalculatorViewMode(m_mode))
+    {
+        if (!m_NoteCalcViewModel)
+        {
+            m_NoteCalcViewModel = ref new NoteCalculatorViewModel();
+        }
+    }
     else if (NavCategory::IsConverterViewMode(m_mode))
     {
         if (!m_ConverterViewModel)

@@ -45,6 +45,7 @@ static constexpr int PRESSURE_ID = 14;
 static constexpr int ANGLE_ID = 15;
 static constexpr int CURRENCY_ID = 16;
 static constexpr int GRAPHING_ID = 17;
+static constexpr int NOTE_ID = 18;
 // ^^^ THESE CONSTANTS SHOULD NEVER CHANGE ^^^
 
 namespace // put the utils within this TU
@@ -111,6 +112,15 @@ namespace // put the utils within this TU
           CategoryGroupType::Calculator,
           MyVirtualKey::Number5,
           L"5",
+          SUPPORTS_ALL },
+      NavCategoryInitializer{ ViewMode::Note,
+          NOTE_ID,
+          L"Note",
+          L"NoteMode",
+          L"\uE890",
+          CategoryGroupType::Calculator,
+          MyVirtualKey::Number6,
+          L"6",
           SUPPORTS_ALL },
       NavCategoryInitializer{ ViewMode::Currency,
           CURRENCY_ID,
@@ -236,7 +246,8 @@ namespace // put the utils within this TU
 bool NavCategory::IsCalculatorViewMode(ViewModeType mode)
 {
     // Historically, Calculator modes are Standard, Scientific, and Programmer.
-    return !IsDateCalculatorViewMode(mode) && !IsGraphingCalculatorViewMode(mode) && IsModeInCategoryGroup(mode, CategoryGroupType::Calculator);
+    return !IsDateCalculatorViewMode(mode) && !IsNoteCalculatorViewMode(mode) && !IsGraphingCalculatorViewMode(mode)
+           && IsModeInCategoryGroup(mode, CategoryGroupType::Calculator);
 }
 
 bool NavCategory::IsGraphingCalculatorViewMode(ViewModeType mode)
@@ -247,6 +258,11 @@ bool NavCategory::IsGraphingCalculatorViewMode(ViewModeType mode)
 bool NavCategory::IsDateCalculatorViewMode(ViewModeType mode)
 {
     return mode == ViewModeType::Date;
+}
+
+bool NavCategory::IsNoteCalculatorViewMode(ViewModeType mode)
+{
+    return mode == ViewModeType::Note;
 }
 
 bool NavCategory::IsConverterViewMode(ViewModeType mode)

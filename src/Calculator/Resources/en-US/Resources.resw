@@ -905,6 +905,10 @@
     <value>Programmer</value>
     <comment>The text that shows in the dropdown navigation control in snapped mode when programmer calculator mode is selected.</comment>
   </data>
+  <data name="NoteModeText" xml:space="preserve">
+    <value>Note</value>
+    <comment>The text that shows in the dropdown navigation control in snapped mode when note calculator mode is selected.</comment>
+  </data>
   <data name="ConverterModeText" xml:space="preserve">
     <value>Converter</value>
     <comment>The text that shows in the dropdown navigation control for the converter group. The previous key for this was "ConverterMode.Text".</comment>

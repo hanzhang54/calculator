@@ -227,6 +227,9 @@
     <Compile Include="Views\MemoryListItem.xaml.cs">
       <DependentUpon>MemoryListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NoteCalculator.xaml.cs">
+      <DependentUpon>NoteCalculator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NumberPad.xaml.cs">
       <DependentUpon>NumberPad.xaml</DependentUpon>
     </Compile>
@@ -759,6 +762,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MemoryListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoteCalculator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

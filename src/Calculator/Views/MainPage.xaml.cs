@@ -23,6 +23,7 @@ using CalculatorApp.ViewModel.Common;
 using CalculatorApp.ViewModel.Common.Automation;
 
 using wuxc = Windows.UI.Xaml.Controls;
+using CalculatorApp.Views;
 
 namespace CalculatorApp
 {
@@ -316,7 +317,7 @@ namespace CalculatorApp
                         EnsureGraphingCalculator();
                         KeyboardShortcutManager.DisableShortcuts(true);
                         break;
-                    default:
+                    case ViewMode.Data:
                         if (NavCategory.IsDateCalculatorViewMode(newValue))
                         {
                             if (Model.CalculatorViewModel != null)
@@ -325,7 +326,16 @@ namespace CalculatorApp
                             }
                             EnsureDateCalculator();
                         }
-                        else if (NavCategory.IsConverterViewMode(newValue))
+                        break;
+                    case ViewMode.Note:
+                        if (Model.CalculatorViewModel != null)
+                        {
+                            Model.CalculatorViewModel.HistoryVM.AreHistoryShortcutsEnabled = false;
+                        }
+                        EnsureNoteCalculator();
+                        break;
+                    default:
+                        if (NavCategory.IsConverterViewMode(newValue))
                         {
                             if (Model.CalculatorViewModel != null)
                             {
@@ -475,6 +485,7 @@ namespace CalculatorApp
         {
             var isCalcViewMode = NavCategory.IsCalculatorViewMode(mode);
             var isDateCalcViewMode = NavCategory.IsDateCalculatorViewMode(mode);
+            var isNoteCalcViewMode = NavCategory.IsNoteCalculatorViewMode(mode);
             var isGraphingCalcViewMode = NavCategory.IsGraphingCalculatorViewMode(mode);
             var isConverterViewMode = NavCategory.IsConverterViewMode(mode);
 
@@ -488,6 +499,12 @@ namespace CalculatorApp
             {
                 m_dateCalculator.Visibility = BooleanToVisibilityConverter.Convert(isDateCalcViewMode);
                 m_dateCalculator.IsEnabled = isDateCalcViewMode;
+            }
+
+            if (m_noteCalculator != null)
+            {
+                m_noteCalculator.Visibility = BooleanToVisibilityConverter.Convert(isNoteCalcViewMode);
+                m_noteCalculator.IsEnabled = isNoteCalcViewMode;
             }
 
             if (m_graphingCalculator != null)
@@ -532,7 +549,7 @@ namespace CalculatorApp
 
         private void OnPageLoaded(object sender, RoutedEventArgs args)
         {
-            if (m_converter == null && m_calculator == null && m_dateCalculator == null && m_graphingCalculator == null)
+            if (m_converter == null && m_calculator == null && m_dateCalculator == null && m_noteCalculator == null && m_graphingCalculator == null)
             {
                 // We have just launched into our default mode (standard calc) so ensure calc is loaded
                 EnsureCalculator();
@@ -635,6 +652,27 @@ namespace CalculatorApp
             }
         }
 
+        private void EnsureNoteCalculator()
+        {
+            if (m_noteCalculator == null)
+            {
+                // delay loading converter
+                m_noteCalculator = new NoteCalculator
+                {
+                    Name = "noteCalculator",
+                    DataContext = Model.NoteCalcViewModel
+                };
+
+                NoteCalcHolder.Child = m_noteCalculator;
+            }
+
+            if (m_calculator != null)
+            {
+                m_calculator.CloseHistoryFlyout();
+                m_calculator.CloseMemoryFlyout();
+            }
+        }
+
         private void EnsureGraphingCalculator()
         {
             if (m_graphingCalculator == null)
@@ -708,6 +746,7 @@ namespace CalculatorApp
         private GraphingCalculator m_graphingCalculator;
         private UnitConverter m_converter;
         private DateCalculator m_dateCalculator;
+        private NoteCalculator m_noteCalculator;
         private readonly AccessibilitySettings m_accessibilitySettings;
     }
 }
