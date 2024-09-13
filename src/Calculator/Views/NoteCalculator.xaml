@@ -9,12 +9,20 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
 
-    <Grid x:Name="NoteCalculatorGrid" Margin="16,0">
+    <Grid x:Name="NoteCalculatorGrid" Margin="16,0,16,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"
                            MinHeight="{StaticResource HamburgerHeight}"
                            MaxHeight="52"/>
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
+        <Grid x:Name="CanvasGrid"
+              Grid.Row="1"
+              Background="White"
+              BorderBrush="Gray"
+              BorderThickness="1"
+              CornerRadius="{ThemeResource ControlCornerRadius}">
+            <InkCanvas x:Name="NoteCanvas"/>
+        </Grid>
     </Grid>
 </UserControl>
