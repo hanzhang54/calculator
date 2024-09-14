@@ -1,0 +1,27 @@
+<UserControl x:Class="MyScriptEditor.UserControls.EditorUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Win2Dcanvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:MyScriptEditor.UserControls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             RequestedTheme="Light"
+             mc:Ignorable="d">
+    <Grid Background="White">
+        <Win2Dcanvas:CanvasVirtualControl x:Name="renderCanvas"
+                                          Padding="0"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          PointerCanceled="Capture_PointerCanceled"
+                                          PointerMoved="Capture_PointerMoved"
+                                          PointerPressed="Capture_PointerPressed"
+                                          PointerReleased="Capture_PointerReleased"
+                                          PointerWheelChanged="Capture_PointerWheelChanged"
+                                          RegionsInvalidated="Canvas_OnRegionsInvalidated"
+                                          SizeChanged="Canvas_SizeChanged"/>
+
+        <local:SmartGuideUserControl x:Name="smartGuide"
+                                     Editor="{x:Bind Editor, Mode=OneWay}"
+                                     Visibility="Collapsed"/>
+    </Grid>
+</UserControl>

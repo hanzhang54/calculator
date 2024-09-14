@@ -165,6 +165,7 @@
     <Compile Include="Converters\RadixToStringConverter.cs" />
     <Compile Include="Converters\VisibilityNegationConverter.cs" />
     <Compile Include="Selectors\NavViewMenuItemTemplateSelector.cs" />
+    <Compile Include="Utils\MyScriptCertificate.cs" />
     <Compile Include="Utils\ResourceVirtualKey.cs" />
     <Compile Include="Utils\ResourceString.cs" />
     <Compile Include="Utils\ThemeHelper.cs" />
@@ -211,6 +212,9 @@
     </Compile>
     <Compile Include="Views\GraphingCalculator\KeyGraphFeaturesPanel.xaml.cs">
       <DependentUpon>KeyGraphFeaturesPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HandwringCalculator.xaml.cs">
+      <DependentUpon>HandwringCalculator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HistoryList.xaml.cs">
       <DependentUpon>HistoryList.xaml</DependentUpon>
@@ -682,6 +686,41 @@
     <PRIResource Include="Resources\zh-tw\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\recognition-assets\conf\diagram.conf">
+      <Link>conf\diagram.conf</Link>
+    </Content>
+    <Content Include="..\recognition-assets\conf\raw-content.conf">
+      <Link>conf\raw-content.conf</Link>
+    </Content>
+    <Content Include="..\recognition-assets\conf\en_US.conf">
+      <Link>conf\en_US.conf</Link>
+    </Content>
+    <Content Include="..\recognition-assets\conf\math.conf">
+      <Link>conf\math.conf</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\analyzer\ank-diagram.res">
+      <Link>resources\analyzer\ank-diagram.res</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\analyzer\ank-raw-content.res">
+      <Link>resources\analyzer\ank-raw-content.res</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\en_US\en_US-ak-cur.res">
+      <Link>resources\en_US\en_US-ak-cur.res</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\en_US\en_US-lk-text.res">
+      <Link>resources\en_US\en_US-lk-text.res</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\math\math-ak.res">
+      <Link>resources\math\math-ak.res</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\math\math-grm-standard.res">
+      <Link>resources\math\math-grm-standard.res</Link>
+    </Content>
+    <Content Include="..\recognition-assets\resources\shape\shk-diagram.res">
+      <Link>resources\shape\shk-diagram.res</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -746,6 +785,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HandwringCalculator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HistoryList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -799,6 +842,9 @@
       <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.8.1" />
+    <PackageReference Include="MyScript.InteractiveInk.Uwp">
+      <Version>3.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalcViewModel\CalcViewModel.vcxproj">
@@ -808,6 +854,10 @@
     <ProjectReference Include="..\GraphControl\GraphControl.vcxproj">
       <Project>{e727a92b-f149-492c-8117-c039a298719b}</Project>
       <Name>GraphControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyScriptEditor\MyScriptEditor.csproj">
+      <Project>{667892f3-1761-4ea9-bdfa-71944c768bad}</Project>
+      <Name>MyScriptEditor</Name>
     </ProjectReference>
     <ProjectReference Include="..\TraceLogging\TraceLogging.vcxproj">
       <Project>{fc81ff41-02cd-4cd9-9bc5-45a1e39ac6ed}</Project>
@@ -837,6 +887,9 @@
   </Target>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="$(SolutionDir)build\Calculator.StampAssemblyInfo.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>powershell.exe -NonInteractive -executionpolicy unrestricted -File "$(SolutionDir)getRecognitionAssets.ps1"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

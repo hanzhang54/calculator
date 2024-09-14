@@ -21,6 +21,8 @@ using Windows.UI.Xaml.Controls;
 using CalculatorApp.Utils;
 using CalculatorApp.ViewModel.Common;
 using CalculatorApp.ViewModel.Common.Automation;
+using MyScript.IInk;
+using Windows.Security.Cryptography.Certificates;
 
 namespace CalculatorApp
 {
@@ -29,6 +31,8 @@ namespace CalculatorApp
     /// </summary>
     public sealed partial class App
     {
+        public static Engine Engine { get; private set; }
+
         /// <summary>
         /// Initializes the singleton application object. This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -94,6 +98,19 @@ namespace CalculatorApp
             }
         }
 
+        private static void Initialize(Engine engine)
+        {
+            // Folders "conf" and "resources" are currently parts of the layout
+            // (for each conf/res file of the project => properties => "Build Action = content")
+            var confDirs = new string[1];
+            confDirs[0] = "conf";
+            engine.Configuration.SetStringArray("configuration-manager.search-path", confDirs);
+
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            var tempFolder = System.IO.Path.Combine(localFolder, "tmp");
+            engine.Configuration.SetString("content-package.temp-folder", tempFolder);
+        }
+
         private void OnAppLaunch(IActivatedEventArgs args, object arguments, bool isPreLaunch)
         {
             // Uncomment the following lines to display frame-rate and per-frame CPU usage info.
@@ -135,6 +152,9 @@ namespace CalculatorApp
                 {
                     FlowDirection = LocalizationService.GetInstance().GetFlowDirection()
                 };
+
+                Engine = Engine.Create((byte[])(Array)MyScript.Certificate.MyCertificate.Bytes);
+                Initialize(Engine);
             }
 
             if (isPreLaunch)

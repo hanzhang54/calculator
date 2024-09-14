@@ -23,6 +23,7 @@ using CalculatorApp.ViewModel.Common;
 using CalculatorApp.ViewModel.Common.Automation;
 
 using wuxc = Windows.UI.Xaml.Controls;
+using CalculatorApp.Views;
 
 namespace CalculatorApp
 {
@@ -315,6 +316,9 @@ namespace CalculatorApp
                     case ViewMode.Graphing:
                         EnsureGraphingCalculator();
                         KeyboardShortcutManager.DisableShortcuts(true);
+                        break;
+                    case ViewMode.Handwriting:
+                        EnsureHandwriting();
                         break;
                     default:
                         if (NavCategory.IsDateCalculatorViewMode(newValue))
@@ -664,6 +668,19 @@ namespace CalculatorApp
             }
         }
 
+        private void EnsureHandwriting()
+        {
+            if (m_handwritingCalculator == null)
+            {
+                m_handwritingCalculator = new HandwringCalculator
+                {
+                    Name = "HandwritingCalculator",
+                };
+
+                HandwritingHolder.Child = m_handwritingCalculator;
+            }
+        }
+
         private void AnnounceCategoryName()
         {
             string categoryName = AutomationProperties.GetName(Header);
@@ -708,6 +725,7 @@ namespace CalculatorApp
         private GraphingCalculator m_graphingCalculator;
         private UnitConverter m_converter;
         private DateCalculator m_dateCalculator;
+        private HandwringCalculator m_handwritingCalculator;
         private readonly AccessibilitySettings m_accessibilitySettings;
     }
 }

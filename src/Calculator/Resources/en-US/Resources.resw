@@ -4762,4 +4762,7 @@
     <value>Couldn't restore this snapshot.</value>
     <comment>The error message to notify user that restoring from snapshot has failed.</comment>
   </data>
+  <data name="HandwritingModeText" xml:space="preserve">
+    <value>Handwriting</value>
+  </data>
 </root>

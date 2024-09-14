@@ -45,6 +45,7 @@ static constexpr int PRESSURE_ID = 14;
 static constexpr int ANGLE_ID = 15;
 static constexpr int CURRENCY_ID = 16;
 static constexpr int GRAPHING_ID = 17;
+static constexpr int HANDWRITING_ID = 18;
 // ^^^ THESE CONSTANTS SHOULD NEVER CHANGE ^^^
 
 namespace // put the utils within this TU
@@ -108,6 +109,15 @@ namespace // put the utils within this TU
           L"Date",
           L"DateCalculationMode",
           L"\uE787",
+          CategoryGroupType::Calculator,
+          MyVirtualKey::Number5,
+          L"5",
+          SUPPORTS_ALL },
+      NavCategoryInitializer{ ViewMode::Handwriting,
+          HANDWRITING_ID,
+          L"Handwriting",
+          L"HandwritingMode",
+          L"\uF736",
           CategoryGroupType::Calculator,
           MyVirtualKey::Number5,
           L"5",

@@ -297,3 +297,5 @@ src/CalcViewModel/DataLoaders/DataLoaderConstants.h
 !src/x86
 !src/out
 !src/ARM
+/src/recognition-assets
+/src/INFO
