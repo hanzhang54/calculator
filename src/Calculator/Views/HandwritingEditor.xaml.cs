@@ -1,3 +1,4 @@
+using MyScript.IInk;
 using MyScriptEditor;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,18 @@ namespace CalculatorApp.Views
         {
             get { return (MyScript.IInk.Editor)GetValue(EditorProperty); }
             set { SetValue(EditorProperty, value); }
+        }
+
+        public string GetExpression()
+        {
+            var expression = string.Empty;
+            var mimeTypes = Editor.GetSupportedExportMimeTypes(null);
+            if ((mimeTypes != null) && (mimeTypes.Contains(MimeType.MATHML)))
+            {
+                expression = Editor.Export_(null, MimeType.MATHML, null);
+            }
+
+            return expression;
         }
 
         private void Initialize(MyScript.IInk.Engine engine)
