@@ -479,6 +479,7 @@ namespace CalculatorApp
         {
             var isCalcViewMode = NavCategory.IsCalculatorViewMode(mode);
             var isDateCalcViewMode = NavCategory.IsDateCalculatorViewMode(mode);
+            var isHandwritingViewMode = NavCategory.IsHandwritingViewMode(mode);
             var isGraphingCalcViewMode = NavCategory.IsGraphingCalculatorViewMode(mode);
             var isConverterViewMode = NavCategory.IsConverterViewMode(mode);
 
@@ -492,6 +493,12 @@ namespace CalculatorApp
             {
                 m_dateCalculator.Visibility = BooleanToVisibilityConverter.Convert(isDateCalcViewMode);
                 m_dateCalculator.IsEnabled = isDateCalcViewMode;
+            }
+
+            if (m_handwritingCalculator != null)
+            {
+                m_handwritingCalculator.Visibility = BooleanToVisibilityConverter.Convert(isHandwritingViewMode);
+                m_handwritingCalculator.IsEnabled = isHandwritingViewMode;
             }
 
             if (m_graphingCalculator != null)
