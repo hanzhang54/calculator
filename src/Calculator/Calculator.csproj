@@ -216,6 +216,9 @@
     <Compile Include="Views\HandwringCalculator.xaml.cs">
       <DependentUpon>HandwringCalculator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\HandwritingEditor.xaml.cs">
+      <DependentUpon>HandwritingEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HistoryList.xaml.cs">
       <DependentUpon>HistoryList.xaml</DependentUpon>
     </Compile>
@@ -786,6 +789,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HandwringCalculator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HandwritingEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
