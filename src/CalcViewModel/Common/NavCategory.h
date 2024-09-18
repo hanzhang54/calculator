@@ -109,6 +109,7 @@ namespace CalculatorApp::ViewModel
             static bool IsCalculatorViewMode(ViewModeType mode);
             static bool IsGraphingCalculatorViewMode(ViewModeType mode);
             static bool IsDateCalculatorViewMode(ViewModeType mode);
+            static bool IsHandwritingViewMode(ViewModeType mode);
             static bool IsConverterViewMode(ViewModeType mode);
 
             internal : NavCategory(

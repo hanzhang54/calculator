@@ -246,7 +246,8 @@ namespace // put the utils within this TU
 bool NavCategory::IsCalculatorViewMode(ViewModeType mode)
 {
     // Historically, Calculator modes are Standard, Scientific, and Programmer.
-    return !IsDateCalculatorViewMode(mode) && !IsGraphingCalculatorViewMode(mode) && IsModeInCategoryGroup(mode, CategoryGroupType::Calculator);
+    return !IsDateCalculatorViewMode(mode) && !IsHandwritingViewMode(mode) && !IsGraphingCalculatorViewMode(mode)
+           && IsModeInCategoryGroup(mode, CategoryGroupType::Calculator);
 }
 
 bool NavCategory::IsGraphingCalculatorViewMode(ViewModeType mode)
@@ -257,6 +258,11 @@ bool NavCategory::IsGraphingCalculatorViewMode(ViewModeType mode)
 bool NavCategory::IsDateCalculatorViewMode(ViewModeType mode)
 {
     return mode == ViewModeType::Date;
+}
+
+bool NavCategory::IsHandwritingViewMode(ViewModeType mode)
+{
+    return mode == ViewModeType::Handwriting;
 }
 
 bool NavCategory::IsConverterViewMode(ViewModeType mode)
