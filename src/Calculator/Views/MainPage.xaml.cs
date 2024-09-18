@@ -728,6 +728,28 @@ namespace CalculatorApp
             await dialog.ShowAsync();
         }
 
+        private void Grid_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            var type = e.GetCurrentPoint(RootGrid).PointerDevice.PointerDeviceType;
+
+            // We can edit below condition for debug:
+            // If you don't have a pen, you can add "|| type == Windows.Devices.Input.PointerDeviceType.Touch" and then you can draw with touch.
+            // if you are using desktop without touch, you can add "|| type == Windows.Devices.Input.PointerDeviceType.Mouse" and then you can draw with mouse.
+            if (type == Windows.Devices.Input.PointerDeviceType.Pen)
+            {
+                Editor.IsHitTestVisible = true;
+            }
+            else
+            {
+                Editor.IsHitTestVisible = false;
+            }
+        }
+
+        private void Grid_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Editor.IsHitTestVisible = true;
+        }
+
         private Calculator m_calculator;
         private GraphingCalculator m_graphingCalculator;
         private UnitConverter m_converter;

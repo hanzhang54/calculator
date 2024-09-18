@@ -200,5 +200,25 @@ namespace CalculatorApp.Views
             controller.SetToolForType(MyScript.IInk.PointerType.PEN, MyScript.IInk.PointerTool.HAND);
             controller.SetToolForType(MyScript.IInk.PointerType.TOUCH, MyScript.IInk.PointerTool.PEN);
         }
+
+        private void KeyboardAccelerator_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            if (args.KeyboardAccelerator.Key == Windows.System.VirtualKey.Enter)
+            {
+                AppBar_ConvertButton_Click(sender, null);
+            }
+            else if (args.KeyboardAccelerator.Key == Windows.System.VirtualKey.Z && args.KeyboardAccelerator.Modifiers == Windows.System.VirtualKeyModifiers.Control)
+            {
+                AppBar_UndoButton_Click(sender, null);
+            }
+            else if (args.KeyboardAccelerator.Key == Windows.System.VirtualKey.Y && args.KeyboardAccelerator.Modifiers == Windows.System.VirtualKeyModifiers.Control)
+            {
+                AppBar_RedoButton_Click(sender, null);
+            }
+            else if (args.KeyboardAccelerator.Key == Windows.System.VirtualKey.Delete)
+            {
+                AppBar_ClearButton_Click(sender, null);
+            }
+        }
     }
 }

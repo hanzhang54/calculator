@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              RequestedTheme="Light"
              mc:Ignorable="d">
-    <Grid Background="White">
+    <Grid>
         <Win2Dcanvas:CanvasVirtualControl x:Name="renderCanvas"
                                           Padding="0"
                                           HorizontalAlignment="Stretch"

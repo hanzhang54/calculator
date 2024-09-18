@@ -9,7 +9,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
       xmlns:selectors="using:CalculatorApp.TemplateSelectors"
+      xmlns:uc="using:MyScriptEditor.UserControls"
       xmlns:utils="using:CalculatorApp.Utils"
+      xmlns:views="using:CalculatorApp.Views"
       xmlns:vmcom="using:CalculatorApp.ViewModel.Common"
       x:Name="PageRoot"
       muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
@@ -132,7 +134,9 @@
                              UseSystemFocusVisuals="True"
                              Visibility="{x:Bind Popup.IsOpen, Mode=OneWay, Converter={StaticResource BooleanToVisibilityNegationConverter}}">
             <Grid>
-                <Grid>
+                <Grid x:Name="RootGrid"
+                      PointerEntered="Grid_PointerEntered"
+                      PointerExited="Grid_PointerExited">
                     <Border x:Name="CalcHolder">
                         <!-- PLACEHOLDER!!!! This is where the calculator goes when it is delay loaded -->
                     </Border>
@@ -148,6 +152,8 @@
                     <Border x:Name="HandwritingHolder">
                         <!-- PLACEHOLDER!!!! This is where the handwriting goes when it is delay loaded -->
                     </Border>
+
+                    <views:HandwritingEditor x:Name="Editor"/>
                 </Grid>
 
                 <Grid Height="{StaticResource HamburgerHeight}"
