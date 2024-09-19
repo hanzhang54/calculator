@@ -47,7 +47,9 @@
 
         <uc:EditorUserControl x:Name="UcEditor"
                               Grid.Row="1"
-                              Editor="{x:Bind Editor, Mode=OneWay}">
+                              Background="{x:Bind Background}"
+                              Editor="{x:Bind Editor, Mode=OneWay}"
+                              KeyboardAcceleratorPlacementMode="Hidden">
             <uc:EditorUserControl.KeyboardAccelerators>
                 <KeyboardAccelerator Key="Enter"
                                      Invoked="KeyboardAccelerator_Invoked"

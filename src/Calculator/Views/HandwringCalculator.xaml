@@ -20,7 +20,7 @@
 
             <local:HandwritingEditor x:Name="Editor"
                                      Grid.Row="1"
-                                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                     Background="White"
                                      EditorBarVisibility="Visible"/>
         </Grid>
     </Grid>
