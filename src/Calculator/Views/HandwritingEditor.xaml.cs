@@ -35,6 +35,8 @@ namespace CalculatorApp.Views
         public static readonly DependencyProperty EditorBarVisibilityProperty =
             DependencyProperty.Register("EditorBarVisibility", typeof(Visibility), typeof(HandwritingEditor), new PropertyMetadata(Visibility.Collapsed));
 
+        private static int _packageFileNumber = 0;
+
         // Offscreen rendering
         private float _dpiX = 96;
         private float _dpiY = 96;
@@ -174,12 +176,11 @@ namespace CalculatorApp.Views
         private static string MakeUntitledFilename()
         {
             var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-            var num = 0;
             string name;
 
             do
             {
-                var baseName = "File" + (++num) + ".iink";
+                var baseName = "File" + (++_packageFileNumber) + ".iink";
                 name = System.IO.Path.Combine(localFolder, baseName);
             }
             while (System.IO.File.Exists(name));

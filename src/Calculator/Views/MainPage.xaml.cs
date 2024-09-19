@@ -543,7 +543,7 @@ namespace CalculatorApp
 
         private void OnPageLoaded(object sender, RoutedEventArgs args)
         {
-            if (m_converter == null && m_calculator == null && m_dateCalculator == null && m_graphingCalculator == null)
+            if (m_converter == null && m_calculator == null && m_dateCalculator == null && m_handwritingCalculator == null && m_graphingCalculator == null)
             {
                 // We have just launched into our default mode (standard calc) so ensure calc is loaded
                 EnsureCalculator();
