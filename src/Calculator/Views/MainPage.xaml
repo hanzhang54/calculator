@@ -155,7 +155,7 @@
 
                     <views:HandwritingEditor x:Name="Editor"
                                              Background="Transparent"
-                                             Visibility="{x:Bind Model.CalculatorViewModel.IsHandwritingMode, Mode=OneWay}"/>
+                                             Visibility="{x:Bind Model.CalculatorViewModel.IsHandwritingMode, Converter={StaticResource BooleanToVisibilityNegationConverter}, Mode=OneWay}"/>
                 </Grid>
 
                 <Grid Height="{StaticResource HamburgerHeight}"
