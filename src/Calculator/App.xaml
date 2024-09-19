@@ -1941,7 +1941,7 @@
                    BasedOn="{StaticResource SquareIconButtonStyle}"
                    TargetType="Button">
                 <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="Margin" Value="0,0,8,0"/>
+                <Setter Property="Margin" Value="12,0,8,0"/>
             </Style>
 
             <Style x:Key="ClearAllHistoryMemoryButtonStyle"

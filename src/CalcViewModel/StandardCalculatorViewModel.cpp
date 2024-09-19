@@ -182,6 +182,8 @@ StandardCalculatorViewModel::StandardCalculatorViewModel()
     IsOperandEnabled = true;
     IsNegateEnabled = true;
     IsDecimalEnabled = true;
+    IsNumberPadMode = true;
+    IsHandwritingMode = false;
     AreProgrammerRadixOperatorsVisible = false;
 }
 

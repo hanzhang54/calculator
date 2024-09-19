@@ -105,6 +105,8 @@ namespace CalculatorApp
             OBSERVABLE_PROPERTY_R(bool, IsInputEmpty);
             OBSERVABLE_PROPERTY_R(CalculatorApp::ViewModel::Common::Automation::NarratorAnnouncement ^, Announcement);
             OBSERVABLE_PROPERTY_R(unsigned int, OpenParenthesisCount);
+            OBSERVABLE_PROPERTY_RW(bool, IsNumberPadMode);
+            OBSERVABLE_PROPERTY_RW(bool, IsHandwritingMode);
 
             COMMAND_FOR_METHOD(CopyCommand, StandardCalculatorViewModel::OnCopyCommand);
             COMMAND_FOR_METHOD(PasteCommand, StandardCalculatorViewModel::OnPasteCommand);
