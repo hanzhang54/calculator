@@ -40,7 +40,7 @@
                                      Tag="{x:Bind ViewMode}"
                                      IsEnabled="{x:Bind IsEnabled, Mode=OneWay}">
                 <muxc:NavigationViewItem.Icon>
-                    <FontIcon FontFamily="{StaticResource CalculatorFontFamily}" Glyph="{x:Bind Glyph}"/>
+                    <FontIcon FontFamily="{StaticResource CalculatorFontFamily2}" Glyph="{x:Bind Glyph}"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
         </DataTemplate>

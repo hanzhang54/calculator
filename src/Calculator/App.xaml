@@ -333,6 +333,7 @@
             <x:Double x:Key="AppMinWindowWidth">320</x:Double>
 
             <FontFamily x:Key="CalculatorFontFamily">ms-appx:///Assets/CalculatorIcons.ttf#Calculator Fluent Icons</FontFamily>
+            <FontFamily x:Key="CalculatorFontFamily2">ms-appx:///Assets/CalculatorIcons2.ttf#icomoon</FontFamily>
 
             <x:Double x:Key="SplitViewOpenPaneLength">256</x:Double>
             <Thickness x:Key="PivotPortraitThemePadding">0,1,0,0</Thickness>

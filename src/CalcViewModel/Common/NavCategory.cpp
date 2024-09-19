@@ -117,7 +117,7 @@ namespace // put the utils within this TU
           HANDWRITING_ID,
           L"Handwriting",
           L"HandwritingMode",
-          L"\uF736",
+          L"\uE932",
           CategoryGroupType::Calculator,
           MyVirtualKey::Number5,
           L"5",
