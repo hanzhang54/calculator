@@ -334,6 +334,7 @@
     <ClInclude Include="GraphingCalculator\GraphingCalculatorViewModel.h" />
     <ClInclude Include="GraphingCalculator\VariableViewModel.h" />
     <ClInclude Include="GraphingCalculator\GraphingSettingsViewModel.h" />
+    <ClInclude Include="HandwritingCalculatorViewModel.h" />
     <ClInclude Include="HistoryItemViewModel.h" />
     <ClInclude Include="HistoryViewModel.h" />
     <ClInclude Include="MemoryItemViewModel.h" />
@@ -367,6 +368,7 @@
     <ClCompile Include="GraphingCalculator\EquationViewModel.cpp" />
     <ClCompile Include="GraphingCalculator\GraphingCalculatorViewModel.cpp" />
     <ClCompile Include="GraphingCalculator\GraphingSettingsViewModel.cpp" />
+    <ClCompile Include="HandwritingCalculatorViewModel.cpp" />
     <ClCompile Include="HistoryItemViewModel.cpp" />
     <ClCompile Include="HistoryViewModel.cpp" />
     <ClCompile Include="MemoryItemViewModel.cpp" />

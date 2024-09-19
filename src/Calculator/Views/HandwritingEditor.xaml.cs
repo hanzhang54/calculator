@@ -25,6 +25,16 @@ namespace CalculatorApp.Views
         public static readonly DependencyProperty EditorProperty =
             DependencyProperty.Register("Editor", typeof(MyScript.IInk.Editor), typeof(HandwringCalculator), new PropertyMetadata(default));
 
+        public Visibility EditorBarVisibility
+        {
+            get { return (Visibility)GetValue(EditorBarVisibilityProperty); }
+            set { SetValue(EditorBarVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EditorBarVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EditorBarVisibilityProperty =
+            DependencyProperty.Register("EditorBarVisibility", typeof(Visibility), typeof(HandwritingEditor), new PropertyMetadata(Visibility.Collapsed));
+
         // Offscreen rendering
         private float _dpiX = 96;
         private float _dpiY = 96;

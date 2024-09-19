@@ -15,38 +15,13 @@
                 <RowDefinition Height="1*"
                                MinHeight="{StaticResource HamburgerHeight}"
                                MaxHeight="52"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <CommandBar HorizontalAlignment="Left" OverflowButtonVisibility="Collapsed">
-                    <AppBarButton Click="AppBar_UndoButton_Click"
-                                  Icon="Undo"
-                                  Label="Undo"/>
-                    <AppBarButton Click="AppBar_RedoButton_Click"
-                                  Icon="Redo"
-                                  Label="Redo"/>
-                    <AppBarButton Click="AppBar_ClearButton_Click"
-                                  Icon="Delete"
-                                  Label="Clear"/>
-                </CommandBar>
 
-                <Button Grid.Column="1"
-                        MinWidth="120"
-                        Margin="0,0,12,0"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource AccentButtonStyle}"
-                        Click="AppBar_ConvertButton_Click"
-                        Content="Convert to Math"/>
-            </Grid>
-
-            <uc:EditorUserControl x:Name="UcEditor"
-                                  Grid.Row="2"
-                                  Editor="{x:Bind Editor, Mode=OneWay}"/>
+            <local:HandwritingEditor x:Name="Editor"
+                                     Grid.Row="1"
+                                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                     EditorBarVisibility="Visible"/>
         </Grid>
     </Grid>
 </UserControl>

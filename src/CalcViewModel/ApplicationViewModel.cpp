@@ -586,6 +586,13 @@ void ApplicationViewModel::OnModeChanged()
             m_DateCalcViewModel = ref new DateCalculatorViewModel();
         }
     }
+    else if (NavCategory::IsHandwritingViewMode(m_mode))
+    {
+        if (!m_HandwritingCalcViewModel)
+        {
+            m_HandwritingCalcViewModel = ref new HandwritingCalculatorViewModel();
+        }
+    }
     else if (NavCategory::IsConverterViewMode(m_mode))
     {
         if (!m_ConverterViewModel)
