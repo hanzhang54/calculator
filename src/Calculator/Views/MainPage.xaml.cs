@@ -747,7 +747,7 @@ namespace CalculatorApp
 
         private void Grid_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            Editor.IsHitTestVisible = true;
+            Editor.IsHitTestVisible = false;
         }
 
         private Calculator m_calculator;
