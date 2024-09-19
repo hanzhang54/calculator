@@ -7,6 +7,7 @@ using CalculatorApp.Utils;
 using CalculatorApp.ViewModel;
 using CalculatorApp.ViewModel.Common;
 using CalculatorApp.ViewModel.Common.Automation;
+using CommunityToolkit.WinUI.Controls;
 
 using GraphControl;
 
@@ -886,6 +887,15 @@ namespace CalculatorApp
 
             // The control needs to be loaded, else the control will override GridLinesColor and ignore the value passed
             UpdateGraphTheme();
+            InputModeSelector.SelectedIndex = m_viewModel.IsNumberPadMode ? 0 : 1;
+        }
+
+        private void OnInputModeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentMode = e.AddedItems[0] as SegmentedItem;
+            var newMode = currentMode.Tag as string;
+            m_viewModel.IsNumberPadMode = newMode == "NumberPad";
+            m_viewModel.IsHandwritingMode = newMode == "Handwriting";
         }
     }
 }

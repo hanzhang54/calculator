@@ -19,6 +19,8 @@ namespace CalculatorApp::ViewModel
         OBSERVABLE_PROPERTY_R(Windows::Foundation::Collections::IObservableVector<EquationViewModel ^> ^, Equations);
         OBSERVABLE_PROPERTY_R(Windows::Foundation::Collections::IObservableVector<VariableViewModel ^> ^, Variables);
         OBSERVABLE_PROPERTY_R(EquationViewModel ^, SelectedEquation);
+        OBSERVABLE_PROPERTY_RW(bool, IsNumberPadMode);
+        OBSERVABLE_PROPERTY_RW(bool, IsHandwritingMode);
 
         COMMAND_FOR_METHOD(ButtonPressed, GraphingCalculatorViewModel::OnButtonPressed);
 

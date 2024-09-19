@@ -19,6 +19,8 @@ namespace CalculatorApp::ViewModel
         , m_Equations{ ref new Vector<EquationViewModel ^>() }
         , m_Variables{ ref new Vector<VariableViewModel ^>() }
     {
+        IsNumberPadMode = true;
+        IsHandwritingMode = false;
     }
 
     void GraphingCalculatorViewModel::OnButtonPressed(Object ^ parameter)
