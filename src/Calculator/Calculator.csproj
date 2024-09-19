@@ -877,6 +877,9 @@
   <ItemGroup>
     <Content Include="Assets\CalculatorIcons.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CalculatorIcons2.ttf" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
