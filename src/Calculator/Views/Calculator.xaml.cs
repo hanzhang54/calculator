@@ -4,7 +4,7 @@
 using CalculatorApp.Utils;
 using CalculatorApp.ViewModel;
 using CalculatorApp.ViewModel.Common;
-
+using CommunityToolkit.WinUI.Controls;
 using System;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
@@ -245,6 +245,8 @@ namespace CalculatorApp
             HistoryFlyout.FlyoutPresenterStyle.Setters.Add(new Setter(AutomationProperties.NameProperty, historyPaneName));
             string memoryPaneName = AppResourceProvider.GetInstance().GetResourceString("MemoryPane");
             MemoryFlyout.FlyoutPresenterStyle.Setters.Add(new Setter(AutomationProperties.NameProperty, memoryPaneName));
+
+            InputModeSelector.SelectedIndex = Model.IsNumberPadMode ? 0 : 1;
 
             // Delay load things later when we get a chance.
             WeakReference weakThis = new WeakReference(this);
@@ -885,6 +887,14 @@ namespace CalculatorApp
             var loader = ResourceLoader.GetForCurrentView();
             var label = loader.GetString("HistoryLabel/Text");
             return isEmpty ? $"{loader.GetString("HistoryEmpty/Text")} {label}" : label;
+        }
+
+        private void OnInputModeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentMode = e.AddedItems[0] as SegmentedItem;
+            var newMode = currentMode.Tag as string;
+            Model.IsNumberPadMode = newMode == "NumberPad";
+            Model.IsHandwritingMode = newMode == "Handwriting";
         }
     }
 }
