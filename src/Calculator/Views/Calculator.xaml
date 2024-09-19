@@ -722,6 +722,7 @@
             <!-- Scientific angle buttons -->
             <local:CalculatorScientificAngleButtons x:Name="ScientificAngleButtons"
                                                     Grid.Row="3"
+                                                    Background="Transparent"
                                                     TabIndex="6"
                                                     Visibility="{x:Bind Model.IsScientific, Mode=OneWay}"
                                                     IsEnabled="{x:Bind Model.IsScientific, Mode=OneWay}"
@@ -731,6 +732,7 @@
             <Grid x:Name="MemoryPanel"
                   Grid.Row="4"
                   Margin="3,0,3,0"
+                  Background="Transparent"
                   AutomationProperties.HeadingLevel="Level1"
                   AutomationProperties.Name="{utils:ResourceString Name=MemoryPanel/[using:Windows.UI.Xaml.Automation]AutomationProperties/Name}"
                   Visibility="{x:Bind Model.IsAlwaysOnTop, Converter={StaticResource BooleanToVisibilityNegationConverter}, Mode=OneWay}">
