@@ -757,6 +757,9 @@ namespace CalculatorApp
             Editor.Editor.Clear();
         }
 
+        public static Visibility OrToInVisibility(object obj1, object obj2)
+            => (bool)obj1 || (bool)obj1 ? Visibility.Collapsed : Visibility.Visible;
+
         private Calculator m_calculator;
         private GraphingCalculator m_graphingCalculator;
         private UnitConverter m_converter;
