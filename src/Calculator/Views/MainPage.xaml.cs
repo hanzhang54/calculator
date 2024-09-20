@@ -32,11 +32,26 @@ namespace CalculatorApp
         public static readonly DependencyProperty NavViewCategoriesSourceProperty =
             DependencyProperty.Register(nameof(NavViewCategoriesSource), typeof(List<object>), typeof(MainPage), new PropertyMetadata(default));
 
+        public static readonly DependencyProperty IsHandWritingModeProperty =
+            DependencyProperty.Register("IsHandWritingMode", typeof(bool), typeof(MainPage), new PropertyMetadata(false));
+
         public List<object> NavViewCategoriesSource
         {
             get => (List<object>)GetValue(NavViewCategoriesSourceProperty);
             set => SetValue(NavViewCategoriesSourceProperty, value);
         }
+
+
+
+        public bool IsHandWritingMode
+        {
+            get => (bool)GetValue(IsHandWritingModeProperty);
+            set => SetValue(IsHandWritingModeProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for IsHandWritingMode.  This enables animation, styling, binding, etc...
+
+
 
         public ApplicationViewModel Model { get; }
 
@@ -50,6 +65,7 @@ namespace CalculatorApp
 
             Application.Current.Suspending += App_Suspending;
             Model.PropertyChanged += OnAppPropertyChanged;
+
             m_accessibilitySettings = new AccessibilitySettings();
 
             if (Utilities.GetIntegratedDisplaySize(out var sizeInInches))
@@ -588,8 +604,33 @@ namespace CalculatorApp
                 m_calculator = new Calculator
                 {
                     Name = "Calculator",
-                    DataContext = Model.CalculatorViewModel
+                    DataContext = Model.CalculatorViewModel,
+                    Model = Model.CalculatorViewModel,
                 };
+                Model.CalculatorViewModel.PropertyChanged += (_, args) =>
+                {
+                    if (args.PropertyName == nameof(Model.CalculatorViewModel.IsHandwritingMode))
+                    {
+                        if (Model.GraphingCalcViewModel != null && Model.CalculatorViewModel != null)
+                        {
+                            IsHandWritingMode = (Model.GraphingCalcViewModel.IsHandwritingMode || Model.CalculatorViewModel.IsHandwritingMode);
+                        }
+                        else if (Model.GraphingCalcViewModel != null)
+                        {
+                            IsHandWritingMode = Model.GraphingCalcViewModel.IsHandwritingMode;
+                        }
+                        else if (Model.CalculatorViewModel != null)
+                        {
+                            IsHandWritingMode = Model.CalculatorViewModel.IsHandwritingMode;
+                        }
+                        else
+                        {
+                            IsHandWritingMode = false;
+                        }
+                    }
+                };
+
+
                 Binding isStandardBinding = new Binding
                 {
                     Path = new PropertyPath("IsStandard")
@@ -659,6 +700,29 @@ namespace CalculatorApp
 
                 GraphingCalcHolder.Child = m_graphingCalculator;
             }
+
+            Model.GraphingCalcViewModel.PropertyChanged += (_, args) =>
+            {
+                if (args.PropertyName == nameof(Model.GraphingCalcViewModel.IsHandwritingMode))
+                {
+                    if (Model.GraphingCalcViewModel != null && Model.CalculatorViewModel != null)
+                    {
+                        IsHandWritingMode = (Model.GraphingCalcViewModel.IsHandwritingMode || Model.CalculatorViewModel.IsHandwritingMode);
+                    }
+                    else if (Model.GraphingCalcViewModel != null)
+                    {
+                        IsHandWritingMode = Model.GraphingCalcViewModel.IsHandwritingMode;
+                    }
+                    else if(Model.CalculatorViewModel != null)
+                    {
+                        IsHandWritingMode = Model.CalculatorViewModel.IsHandwritingMode;
+                    }
+                    else
+                    {
+                        IsHandWritingMode = false;
+                    }
+                }
+            };
         }
 
         private void EnsureConverter()
@@ -756,9 +820,6 @@ namespace CalculatorApp
             m_graphingCalculator.PassHandwritingToInputArea(expression);
             Editor.Editor.Clear();
         }
-
-        public static Visibility OrToInVisibility(object obj1, object obj2)
-            => (bool)obj1 || (bool)obj1 ? Visibility.Collapsed : Visibility.Visible;
 
         private Calculator m_calculator;
         private GraphingCalculator m_graphingCalculator;
