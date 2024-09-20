@@ -136,16 +136,9 @@ namespace CalculatorApp.Views
             {
                 var supportedStates = Editor.GetSupportedTargetConversionStates(null);
 
-                if (NavCategoryStates.IsViewModeEnabled(ViewMode.Graphing))
-                {
-                    OnConvertButtonClick?.Invoke(GetExpression());
-                    Editor.Clear();
-                }
-                else
-                {
-                    if ((supportedStates != null) && (supportedStates.Count() > 0))
-                        Editor.Convert(null, supportedStates[0]);
-                }
+                if ((supportedStates != null) && (supportedStates.Count() > 0))
+                    Editor.Convert(null, supportedStates[0]);
+                OnConvertButtonClick?.Invoke(GetExpression());
             }
             catch (Exception ex)
             {
