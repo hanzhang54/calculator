@@ -25,14 +25,17 @@
     </UserControl.Resources>
 
     <Grid>
-        <Border BorderBrush="{ThemeResource AppBarBorderThemeBrush}" BorderThickness="0,1,1,0">
-            <views:HandwritingEditor x:Name="Editor"
+        <Border x:Name="WritingPadBorder"
+                BorderBrush="{ThemeResource AppBarBorderThemeBrush}"
+                BorderThickness="0,1,1,0"
+                Visibility="{x:Bind Model.IsHandwritingMode, Mode=OneWay}">
+            <views:HandwritingEditor x:Name="HandWritingPad"
                                      Grid.RowSpan="8"
                                      Grid.ColumnSpan="5"
                                      Background="{ThemeResource AppBackgroundAltMediumLowBrush}"
-                                     Visibility="{x:Bind Model.IsHandwritingMode, Mode=OneWay}"/>
+                                     EditorBarVisibility="Visible"/>
         </Border>
-        <Grid x:Name="ScientificOperators" Visibility="{Binding ElementName=Editor, Path=Visibility, Converter={StaticResource VisibilityNegationConverter}}">
+        <Grid x:Name="ScientificOperators" Visibility="{Binding ElementName=WritingPadBorder, Path=Visibility, Converter={StaticResource VisibilityNegationConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="OperatorPanelRow" Height="1*"/>
                 <RowDefinition Height="1*"/>
