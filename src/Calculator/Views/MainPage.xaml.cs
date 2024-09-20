@@ -736,7 +736,7 @@ namespace CalculatorApp
             // We can edit below condition for debug:
             // If you don't have a pen, you can add "|| type == Windows.Devices.Input.PointerDeviceType.Touch" and then you can draw with touch.
             // if you are using desktop without touch, you can add "|| type == Windows.Devices.Input.PointerDeviceType.Mouse" and then you can draw with mouse.
-            if (type == Windows.Devices.Input.PointerDeviceType.Pen || type == Windows.Devices.Input.PointerDeviceType.Touch)
+            if (type == Windows.Devices.Input.PointerDeviceType.Pen)
             {
                 Editor.IsHitTestVisible = true;
             }
