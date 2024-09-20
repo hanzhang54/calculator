@@ -316,7 +316,7 @@ namespace CalculatorApp
                     case ViewMode.Graphing:
                         EnsureGraphingCalculator();
                         KeyboardShortcutManager.DisableShortcuts(true);
-                        Editor.OnConvertButtonClick = m_graphingCalculator.PassHandwritingToInputArea;
+                        Editor.OnConvertButtonClick = OnUniversalHandwritingClickConvertButton;
                         break;
                     case ViewMode.Handwriting:
                         EnsureHandwriting();
@@ -749,6 +749,12 @@ namespace CalculatorApp
         private void Grid_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             Editor.IsHitTestVisible = false;
+        }
+
+        private void OnUniversalHandwritingClickConvertButton(string expression)
+        {
+            m_graphingCalculator.PassHandwritingToInputArea(expression);
+            Editor.Editor.Clear();
         }
 
         private Calculator m_calculator;

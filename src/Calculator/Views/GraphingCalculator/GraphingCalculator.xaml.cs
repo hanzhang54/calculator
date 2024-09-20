@@ -894,9 +894,9 @@ namespace CalculatorApp
         private void OnInputModeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var currentMode = e.AddedItems[0] as SegmentedItem;
-            var fromMode = currentMode.Tag as string;
-            m_viewModel.IsNumberPadMode = fromMode == "Handwriting";
-            m_viewModel.IsHandwritingMode = fromMode == "Number";
+            var newMode = currentMode.Tag as string;
+            m_viewModel.IsNumberPadMode = newMode == "Number";
+            m_viewModel.IsHandwritingMode = newMode == "Handwriting";
         }
 
         public void PassHandwritingToInputArea(string expression)
