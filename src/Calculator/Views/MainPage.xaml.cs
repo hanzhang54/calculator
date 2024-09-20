@@ -604,8 +604,7 @@ namespace CalculatorApp
                 m_calculator = new Calculator
                 {
                     Name = "Calculator",
-                    DataContext = Model.CalculatorViewModel,
-                    Model = Model.CalculatorViewModel,
+                    DataContext = Model.CalculatorViewModel
                 };
                 Model.CalculatorViewModel.PropertyChanged += (_, args) =>
                 {

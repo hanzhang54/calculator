@@ -62,29 +62,7 @@ namespace CalculatorApp
             this.SizeChanged += Calculator_SizeChanged;
         }
 
-        private const string sc_ViewModelPropertyName = "Model";
-        private CalculatorApp.ViewModel.StandardCalculatorViewModel m_viewModel;
-
-        public CalculatorApp.ViewModel.StandardCalculatorViewModel Model
-        {
-            get => m_viewModel;
-            set
-            {
-                if (m_viewModel != value)
-                {
-                    m_viewModel = value;
-                    RaisePropertyChanged(sc_ViewModelPropertyName);
-                }
-            }
-        }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        internal void RaisePropertyChanged(string p)
-        {
-#if !UNIT_TESTS
-            PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(p));
-#endif
-        }
+        public CalculatorApp.ViewModel.StandardCalculatorViewModel Model => (StandardCalculatorViewModel)this.DataContext;
 
         public bool IsStandard
         {
