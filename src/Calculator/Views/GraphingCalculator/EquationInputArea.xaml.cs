@@ -164,8 +164,7 @@ namespace CalculatorApp
 
         public void AddAndSubmitEquation(string expression)
         {
-            // to do: update to the focused index
-            int index = 0;
+            int index = Equations.Count - 1;
             var container = (UIElement)EquationInputList.ContainerFromIndex(index);
             if (container != null)
             {
