@@ -888,14 +888,20 @@ namespace CalculatorApp
             // The control needs to be loaded, else the control will override GridLinesColor and ignore the value passed
             UpdateGraphTheme();
             InputModeSelector.SelectedIndex = m_viewModel.IsNumberPadMode ? 0 : 1;
+            GraphingHandwritingEditor.OnConvertButtonClick = PassHandwritingToInputArea;
         }
 
         private void OnInputModeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var currentMode = e.AddedItems[0] as SegmentedItem;
-            var newMode = currentMode.Tag as string;
-            m_viewModel.IsNumberPadMode = newMode == "NumberPad";
-            m_viewModel.IsHandwritingMode = newMode == "Handwriting";
+            var fromMode = currentMode.Tag as string;
+            m_viewModel.IsNumberPadMode = fromMode == "Handwriting";
+            m_viewModel.IsHandwritingMode = fromMode == "Number";
+        }
+
+        public void PassHandwritingToInputArea(string expression)
+        {
+            EquationInputAreaControl.AddAndSubmitEquation(expression);
         }
     }
 }

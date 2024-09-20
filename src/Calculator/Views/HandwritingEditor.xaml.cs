@@ -1,3 +1,4 @@
+using CalculatorApp.ViewModel.Common;
 using MyScript.IInk;
 using MyScriptEditor;
 using System;
@@ -20,6 +21,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CalculatorApp.Views
 {
+    public delegate void ClickConvertButtonHandler(string expression);
+
     public sealed partial class HandwritingEditor : UserControl
     {
         public static readonly DependencyProperty EditorProperty =
@@ -50,11 +53,11 @@ namespace CalculatorApp.Views
             Initialize(App.Engine);
         }
 
-        public MyScript.IInk.Editor Editor
+    public MyScript.IInk.Editor Editor
         {
             get { return (MyScript.IInk.Editor)GetValue(EditorProperty); }
             set { SetValue(EditorProperty, value); }
-        }
+    }
 
         public string GetExpression()
         {
@@ -125,14 +128,24 @@ namespace CalculatorApp.Views
             Editor.Clear();
         }
 
+        public ClickConvertButtonHandler OnConvertButtonClick { get; set; }
+
         private async void AppBar_ConvertButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var supportedStates = Editor.GetSupportedTargetConversionStates(null);
 
-                if ((supportedStates != null) && (supportedStates.Count() > 0))
-                    Editor.Convert(null, supportedStates[0]);
+                if (NavCategoryStates.IsViewModeEnabled(ViewMode.Graphing))
+                {
+                    OnConvertButtonClick?.Invoke(GetExpression());
+                    Editor.Clear();
+                }
+                else
+                {
+                    if ((supportedStates != null) && (supportedStates.Count() > 0))
+                        Editor.Convert(null, supportedStates[0]);
+                }
             }
             catch (Exception ex)
             {

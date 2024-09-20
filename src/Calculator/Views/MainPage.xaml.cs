@@ -316,6 +316,7 @@ namespace CalculatorApp
                     case ViewMode.Graphing:
                         EnsureGraphingCalculator();
                         KeyboardShortcutManager.DisableShortcuts(true);
+                        Editor.OnConvertButtonClick = m_graphingCalculator.PassHandwritingToInputArea;
                         break;
                     case ViewMode.Handwriting:
                         EnsureHandwriting();

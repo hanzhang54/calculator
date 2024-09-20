@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 using CalculatorApp.ViewModel.Common;
@@ -135,6 +135,7 @@ namespace CalculatorApp
                 if (m_richEditBox != null)
                 {
                     m_richEditBox.MathText = equationText;
+                    m_richEditBox.SubmitEquation(EquationSubmissionSource.ENTER_KEY);
                 }
             }
 

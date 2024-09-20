@@ -162,6 +162,27 @@ namespace CalculatorApp
             }
         }
 
+        public void AddAndSubmitEquation(string expression)
+        {
+            // to do: update to the focused index
+            int index = 0;
+            var container = (UIElement)EquationInputList.ContainerFromIndex(index);
+            if (container != null)
+            {
+                container.StartBringIntoView();
+
+                var equationInput = VisualTree.FindDescendantByName(container, "EquationInputButton");
+                if (equationInput == null)
+                {
+                    return;
+                }
+                if (equationInput is EquationTextBox equationTextBox)
+                {
+                    equationTextBox.SetEquationText(expression);
+                }
+            }
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             if (propertyName == EquationsPropertyName)

@@ -12,6 +12,7 @@
              xmlns:local="using:CalculatorApp"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:utils="using:CalculatorApp.Utils"
+             xmlns:views="using:CalculatorApp.Views"
              x:Name="Control"
              DataContextChanged="GraphingCalculator_DataContextChanged"
              mc:Ignorable="d">
@@ -844,8 +845,12 @@
             <local:GraphingNumPad x:Name="GraphingNumPad"
                                   Grid.Row="1"
                                   Margin="2,0,2,2"
-                                  Visibility="{x:Bind IsKeyGraphFeaturesVisible, Converter={StaticResource BooleanToVisibilityNegationConverter}, Mode=OneWay}"/>
-
+                                  Visibility="{x:Bind ViewModel.IsNumberPadMode , Converter={StaticResource BooleanToVisibilityNegationConverter}, Mode=TwoWay}"/>
+            <views:HandwritingEditor x:Name="GraphingHandwritingEditor"
+                      Grid.Row="1"
+                      Margin="2,0,2,2"
+                      EditorBarVisibility="Visible"
+                      Visibility="{x:Bind ViewModel.IsHandwritingMode, Converter={StaticResource BooleanToVisibilityNegationConverter}, Mode=TwoWay}"/>
         </Grid>
     </Grid>
 </UserControl>
