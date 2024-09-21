@@ -32,7 +32,7 @@
             <views:HandwritingEditor x:Name="HandWritingPad"
                                      Grid.RowSpan="8"
                                      Grid.ColumnSpan="5"
-                                     Background="{ThemeResource AppBackgroundAltMediumLowBrush}"
+                                     Background="White"
                                      EditorBarVisibility="Visible"/>
         </Border>
         <Grid x:Name="ScientificOperators" Visibility="{Binding ElementName=WritingPadBorder, Path=Visibility, Converter={StaticResource VisibilityNegationConverter}}">

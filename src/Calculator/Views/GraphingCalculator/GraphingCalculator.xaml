@@ -848,10 +848,11 @@
                                   Margin="2,0,2,2"
                                   Visibility="{x:Bind ViewModel.IsNumberPadMode, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
             <views:HandwritingEditor x:Name="GraphingHandwritingEditor"
-                      Grid.Row="1"
-                      Margin="2,0,2,2"
-                      EditorBarVisibility="Visible"
-                      Visibility="{x:Bind ViewModel.IsHandwritingMode, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+                                     Grid.Row="1"
+                                     Margin="2,0,2,2"
+                                     Background="White"
+                                     EditorBarVisibility="Visible"
+                                     Visibility="{x:Bind ViewModel.IsHandwritingMode, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
         </Grid>
     </Grid>
 </UserControl>
