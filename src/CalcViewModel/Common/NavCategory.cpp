@@ -115,7 +115,7 @@ namespace // put the utils within this TU
           SUPPORTS_ALL },
       NavCategoryInitializer{ ViewMode::Handwriting,
           HANDWRITING_ID,
-          L"Handwriting",
+          L"WriteRight",
           L"HandwritingMode",
           L"\uE932",
           CategoryGroupType::Calculator,

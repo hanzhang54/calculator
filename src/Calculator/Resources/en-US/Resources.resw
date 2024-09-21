@@ -4763,6 +4763,6 @@
     <comment>The error message to notify user that restoring from snapshot has failed.</comment>
   </data>
   <data name="HandwritingModeText" xml:space="preserve">
-    <value>Handwriting</value>
+    <value>WriteRight</value>
   </data>
 </root>

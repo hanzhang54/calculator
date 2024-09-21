@@ -678,7 +678,9 @@
                                                     IsEnabled="{x:Bind Model.IsProgrammer, Mode=OneWay}"
                                                     x:Load="False"/>
 
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <StackPanel Margin="0,0,0,8"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
                 <community:Segmented x:Name="InputModeSelector"
                                      HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
